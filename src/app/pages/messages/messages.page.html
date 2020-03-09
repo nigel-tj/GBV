@@ -1,9 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>messages</ion-title>
+    <ion-title>Chat</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-input type="text" name="message" placeholder="Message" [(ngModel)]="message"><ion-buttons end><button ion-button icon-right color="mango" (click)="sendMessage()"> <ion-icon name="send"></ion-icon></button></ion-buttons></ion-input>
+      
+  </ion-toolbar>
+</ion-footer>
