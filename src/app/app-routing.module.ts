@@ -10,7 +10,7 @@ import('./index/index.module').then(m => m.IndexPageModule)
 {
 path: '',
 loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
-}
+},
 ];
 @NgModule({
 imports: [
