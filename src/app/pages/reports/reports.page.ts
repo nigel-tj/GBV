@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NavController } from '@ionic/angular';
+import * as firebase from 'firebase/app';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-reports',
@@ -18,26 +20,20 @@ export class ReportsPage implements OnInit {
 
   ngOnInit() {
   this.validations_form = this.formBuilder.group({
-      name: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]$')
-      ])),
+      name: new FormControl(''),
       number: new FormControl(''),
-      message: newFormControl('')
+      message: new FormControl('')
     });
   }
 
   sendReport(value){
-    this.authService.registerUser(value)
-     .then(res => {
-       console.log(res);
-       this.errorMessage = "";
-       this.successMessage = "Report Sent";
-     }, err => {
-       console.log(err);
-       this.errorMessage = err.message;
-       this.successMessage = "";
-     })
+    let user = firebase.auth().currentUser;
+    let newInfo = firebase.database().ref('reports/').push();
+    console.log("TTTTTTTTT"+user);
+    newInfo.set(value);
+    console.log("TTTTTTTTT 2"+ value);
+    this.navCtrl.navigateBack('/home');
+    console.log("TTTTTTTTT 3"+ value);
   }
 
 }
