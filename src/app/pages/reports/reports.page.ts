@@ -28,12 +28,11 @@ export class ReportsPage implements OnInit {
 
   sendReport(value){
     let user = firebase.auth().currentUser;
-    let newInfo = firebase.database().ref('reports/').push();
-    console.log("TTTTTTTTT"+user);
+    let newInfo = firebase.database().ref('reports/'+user.uid).push();
+    console.log("TTTTTTTTT"+user.uid);
     newInfo.set(value);
-    console.log("TTTTTTTTT 2"+ value);
-    this.navCtrl.navigateBack('/home');
-    console.log("TTTTTTTTT 3"+ value);
+    this.navCtrl.navigateForward('/home/user-reports');
+
   }
 
 }

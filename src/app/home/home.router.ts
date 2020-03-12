@@ -36,6 +36,10 @@ m => m.SettingsPageModule
  {
     path: 'reports',
     loadChildren: () => import('../pages/reports/reports.module').then( m => m.ReportsPageModule)
+  },
+  {
+    path: 'user-reports',
+    loadChildren: () => import('../pages/user-reports/user-reports.module').then( m => m.UserReportsPageModule)
   }
 
 ]
